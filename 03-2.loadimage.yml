@@ -1,0 +1,5 @@
+# to install docker service
+- hosts:
+  - deploy
+  roles:
+  - loadimage

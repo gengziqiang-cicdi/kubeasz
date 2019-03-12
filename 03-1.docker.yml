@@ -6,8 +6,3 @@
   - new-node
   roles:
   - docker
-
-- hosts:
-  - deploy
-  roles:
-  - loadimage
