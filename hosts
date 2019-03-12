@@ -102,7 +102,7 @@ calico_node_version="v3.4.1"
 calico_node_imageid="276e3cf560cd"
 
 calico_cni_name="calico-cni"
-calico_cni__version="v3.4.1"
+calico_cni_version="v3.4.1"
 calico_cni_imageid="1fc3bbad9f9f"
 
 calico_kube_controllers_name="calico-kube-controllers"
