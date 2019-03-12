@@ -57,7 +57,7 @@
       shell: "{{ bin_dir }}/docker tag {{ kubernetes_dashboard_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ kubernetes_dashboard_name }}:{{ kubernetes_dashboard_version }}"
 
     - name: LOGIN & PUSH {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}
-      shell: "{{ bin_dir }}/docker login {{ HARBOR_IP }} -u {{ HARBOR_USER }} -p {{ HARBOR_PWD }} && \
+      shell: "{{ bin_dir }}/docker login {{ HARBOR_IP }} -u {{ HARBOR_USER }} -p '{{ HARBOR_PWD }}' && \
             {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_node_name }}:{{ calico_node_version }} \
             {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_cni_name }}:{{ calico_cni_version }} \
             {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_kube_controllers_name }}:{{ calico_kube_controllers_version }} \
