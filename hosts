@@ -30,11 +30,8 @@
 # 参数 NEW_INSTALL：yes表示新建，no表示使用已有harbor服务器
 # 如果不使用域名，可以设置 HARBOR_DOMAIN=""
 [harbor]
-HARBOR_IP="172.16.12.37"
-HARBOR_USER="admin"
-HARBOR_PWD="MzxWS!1976;"
-KUBEIMAGE_BASE_DIR=kube-base
 172.16.12.37 HARBOR_DOMAIN="harbor.cicdi.com" NEW_INSTALL=no
+
 
 # 负载均衡(目前已支持多于2节点，一般2节点就够了) 安装 haproxy+keepalived
 [lb]
@@ -94,6 +91,11 @@ ca_dir="/etc/kubernetes/ssl"
 
 #部署目录，即 ansible 工作目录，建议不要修改
 base_dir="/etc/ansible"
+#HARBOR信息
+HARBOR_IP="172.16.12.37"
+HARBOR_USER="admin"
+HARBOR_PWD="MzxWS!1976;"
+KUBEIMAGE_BASE_DIR=kube-base
 #基础镜像名称及版本号
 calico_node_name="calico-node"
 calico_node_version="v3.4.1"
