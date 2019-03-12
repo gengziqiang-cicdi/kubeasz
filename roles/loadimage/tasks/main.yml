@@ -39,17 +39,17 @@
       shell: "{{ bin_dir }}/docker tag {{ calico_node_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_node_name }}:{{ calico_node_version }}"
     - name: TAG{{ calico_cni_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ calico_cni_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_cni_name }}:{{ calico_cni_version }}"
-    - name: TAG{{ calico_kube_controllers_imageid }
+    - name: TAG{{ calico_kube_controllers_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ calico_kube_controllers_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_kube_controllers_name }}:{{ calico_kube_controllers_version }}"
-    - name: TAG{{ coredns_imageid }
+    - name: TAG{{ coredns_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ coredns_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ coredns_name }}:{{ coredns_version }}"
     - name: TAG{{ metrics_server_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ metrics_server_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ metrics_server_name }}:{{ metrics_server_version }}"
     - name: TAG{{ heapster_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ heapster_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_name }}:{{ heapster_version }}"
-    - name: TAG{{ heapster_influxdb_imageid }
+    - name: TAG{{ heapster_influxdb_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ heapster_influxdb_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_influxdb_name }}:{{ heapster_influxdb_version }}"
-    - name: TAG{{ heapster_grafana_imageid }
+    - name: TAG{{ heapster_grafana_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ heapster_grafana_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_grafana_name }}:{{ heapster_grafana_version }}"
     - name: TAG{{ pause_imageid }}
       shell: "{{ bin_dir }}/docker tag {{ pause_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ pause_name }}:{{ pause_version }}"
