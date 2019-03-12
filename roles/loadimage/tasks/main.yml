@@ -1,0 +1,70 @@
+- name: 获取已下载离线镜像信息
+  command: "ls {{ base_dir }}/down"
+  register: download_info
+  connection: local
+  run_once: true
+
+- block:
+    - name: 推送离线{{ coredns_offline_image }}镜像
+      copy: src={{ base_dir }}/down/{{ coredns_offline_image }} dest=/opt/kube/images/{{ coredns_offline_image }}
+    - name: 推送离线{{ metricsserver_offline_image }}镜像
+      copy: src={{ base_dir }}/down/{{ metricsserver_offline_image }} dest=/opt/kube/images/{{ metricsserver_offline_image }}
+    - name: 推送离线{{ dashboard_offline_image }}镜像
+      copy: src={{ base_dir }}/down/{{ dashboard_offline_image }} dest=/opt/kube/images/{{ dashboard_offline_image }}
+    - name: 推送离线{{ heapster_offline_image }}镜像
+      copy: src={{ base_dir }}/down/{{ heapster_offline_image }} dest=/opt/kube/images/{{ heapster_offline_image }}
+    - name: 推送离线{{ calico_offline_image }}镜像
+      copy: src={{ base_dir }}/down/{{ calico_offline_image }} dest=/opt/kube/images/{{ calico_offline_image }}
+    - name: 推送离线{{ pause_offline_image }}镜像
+      copy: src={{ base_dir }}/down/{{ pause_offline_image }} dest=/opt/kube/images/{{ pause_offline_image }}
+
+    - name: 导入{{ coredns_offline_image }}的离线镜像
+      shell: "{{ bin_dir }}/docker load -i /opt/kube/images/{{ coredns_offline_image }}"
+    - name: 导入{{ metricsserver_offline_image }}的离线镜像
+      shell: "{{ bin_dir }}/docker load -i /opt/kube/images/{{ metricsserver_offline_image }}"
+    - name: 导入{{ dashboard_offline_image }}的离线镜像
+      shell: "{{ bin_dir }}/docker load -i /opt/kube/images/{{ dashboard_offline_image }}"
+    - name: 导入{{ heapster_offline_image }}的离线镜像
+      shell: "{{ bin_dir }}/docker load -i /opt/kube/images/{{ heapster_offline_image }}"
+    - name: 导入{{ calico_offline_image }}的离线镜像
+      shell: "{{ bin_dir }}/docker load -i /opt/kube/images/{{ calico_offline_image }}"
+    - name: 导入{{ pause_offline_image }}的离线镜像
+      shell: "{{ bin_dir }}/docker load -i /opt/kube/images/{{ pause_offline_image }}"
+
+
+
+
+
+    - name: TAG{{ calico_node_imageid }}
+      shell: "{{ bin_dir }}/docker tag {{ calico_node_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_node_name }}:{{ calico_node_version }}"
+    - name: TAG{{ calico_cni_imageid }}
+      shell: "{{ bin_dir }}/docker tag {{ calico_cni_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_cni_name }}:{{ calico_cni_version }}"
+    - name: TAG{{ calico_kube_controllers_imageid }
+      shell: "{{ bin_dir }}/docker tag {{ calico_kube_controllers_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_kube_controllers_name }}:{{ calico_kube_controllers_version }}"
+    - name: TAG{{ coredns_imageid }
+      shell: "{{ bin_dir }}/docker tag {{ coredns_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ coredns_name }}:{{ coredns_version }}"
+    - name: TAG{{ metrics_server_imageid }}
+      shell: "{{ bin_dir }}/docker tag {{ metrics_server_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ metrics_server_name }}:{{ metrics_server_version }}"
+    - name: TAG{{ heapster_imageid }}
+      shell: "{{ bin_dir }}/docker tag {{ heapster_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_name }}:{{ heapster_version }}"
+    - name: TAG{{ heapster_influxdb_imageid }
+      shell: "{{ bin_dir }}/docker tag {{ heapster_influxdb_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_influxdb_name }}:{{ heapster_influxdb_version }}"
+    - name: TAG{{ heapster_grafana_imageid }
+      shell: "{{ bin_dir }}/docker tag {{ heapster_grafana_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_grafana_name }}:{{ heapster_grafana_version }}"
+    - name: TAG{{ pause_imageid }}
+      shell: "{{ bin_dir }}/docker tag {{ pause_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ pause_name }}:{{ pause_version }}"
+    - name: TAG{{ kubernetes_dashboard_imageid }}
+      shell: "{{ bin_dir }}/docker tag {{ kubernetes_dashboard_imageid }} {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ kubernetes_dashboard_name }}:{{ kubernetes_dashboard_version }}"
+
+    - name: LOGIN & PUSH {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}
+      shell: "{{ bin_dir }}/docker login {{ HARBOR_IP }} -u {{ HARBOR_USER }} -p {{ HARBOR_PWD }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_node_name }}:{{ calico_node_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_cni_name }}:{{ calico_cni_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_kube_controllers_name }}:{{ calico_kube_controllers_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ coredns_name }}:{{ coredns_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ metrics_server_name }}:{{ metrics_server_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_name }}:{{ heapster_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_influxdb_name }}:{{ heapster_influxdb_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_grafana_name }}:{{ heapster_grafana_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ pause_name }}:{{ pause_version }} \
+            {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ kubernetes_dashboard_name }}:{{ kubernetes_dashboard_version }}"

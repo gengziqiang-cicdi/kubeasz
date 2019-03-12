@@ -1,0 +1,15 @@
+# coredns 离线image
+coredns_offline_image: "coredns_1.2.6.tar"
+# metric server 离线image
+metricsserver_offline_image: "metrics-server_v0.3.1.tar"
+# dashboard 离线image
+dashboard_offline_image: "dashboard_v1.10.0.tar"
+# heapster 离线image
+heapster_offline_image: "heapster_v1.5.4.tar"
+# calico 离线image
+calico_offline_image: "calico_v3.4.1.tar"
+# pause 离线image
+pause_offline_image: "pause_3.1.tar"
+
+
+

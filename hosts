@@ -31,6 +31,9 @@
 # 如果不使用域名，可以设置 HARBOR_DOMAIN=""
 [harbor]
 HARBOR_IP="172.16.12.37"
+HARBOR_USER="admin"
+HARBOR_PWD="MzxWS!1976;"
+KUBEIMAGE_BASE_DIR=kube-base
 172.16.12.37 HARBOR_DOMAIN="harbor.cicdi.com" NEW_INSTALL=no
 
 # 负载均衡(目前已支持多于2节点，一般2节点就够了) 安装 haproxy+keepalived
@@ -91,3 +94,43 @@ ca_dir="/etc/kubernetes/ssl"
 
 #部署目录，即 ansible 工作目录，建议不要修改
 base_dir="/etc/ansible"
+#基础镜像名称及版本号
+calico_node_name="calico-node"
+calico_node_version="v3.4.1"
+calico_node_imageid: "276e3cf560cd"
+
+calico_cni_name="calico-cni"
+calico_cni__version="v3.4.1"
+calico_cni_imageid: "1fc3bbad9f9f"
+
+calico_kube_controllers_name="calico-kube-controllers"
+calico_kube_controllers_version="v3.4.1"
+calico_kube_controllers_imageid: "6a36c1b5d650"
+
+coredns_name="coredns"
+coredns_version="1.2.6"
+coredns_imageid: "f59dcacceff4"
+
+metrics_server_version="metrics-server-amd64"
+metrics_server_name="v0.3.1"
+metrics_server_imageid: "61a0c90da56e"
+
+heapster_name="heapster-amd64"
+heapster_version="v1.5.4"
+heapster_imageid: "72d68eecf40c"
+
+heapster_influxdb_name="heapster-influxdb-amd64"
+heapster_influxdb_version="v1.3.3"
+heapster_influxdb_imageid: "577260d221db"
+
+heapster_grafana_name="heapster-grafana-amd64"
+heapster_grafana_version="v4.4.3"
+heapster_grafana_imageid: "8cb3de219af7"
+
+pause_name="pause-amd64"
+pause_version="3.1"
+pause_imageid: "da86e6ba6ca1"
+
+kubernetes_dashboard_name="kubernetes-dashboard-amd64"
+kubernetes_dashboard_version="v1.10.0"
+kubernetes_dashboard_imageid: "0dab2435c100"
