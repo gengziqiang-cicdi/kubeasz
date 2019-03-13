@@ -1,21 +1,11 @@
 # dns 自动安装，可选"coredns"和“kubedns”
 dns_install: "yes"
-dns_backend: "coredns"
-kubedns_offline: "kubedns_1.14.13.tar"
-coredns_offline: "coredns_1.2.6.tar"
-dns_offline: "{%- if dns_backend == 'coredns' -%} \
-                {{ coredns_offline }} \
-              {%- else -%} \
-                {{ kubedns_offline }} \
-              {%- endif -%}"
 
 # metric server 自动安装
 metricsserver_install: "yes"
-metricsserver_offline: "metrics-server_v0.3.1.tar"
 
 # dashboard 自动安装
 dashboard_install: "yes"
-dashboard_offline: "dashboard_v1.10.0.tar"
 
 # ingress 自动安装，可选 "traefik" 和 "nginx-ingress"
 ingress_install: "no"
@@ -25,7 +15,6 @@ nginx_ingress_offline: "nginx_ingress_0.21.0.tar"
 
 # heapster 自动安装
 heapster_install: "yes"
-heapster_offline: "heapster_v1.5.4.tar"
 
 # metallb 自动安装
 metallb_install: "no"
