@@ -113,8 +113,8 @@ coredns_name="coredns"
 coredns_version="1.2.6"
 coredns_imageid="f59dcacceff4"
 
-metrics_server_version="metrics-server-amd64"
-metrics_server_name="v0.3.1"
+metrics_server_name="metrics-server-amd64"
+metrics_server_version="v0.3.1"
 metrics_server_imageid="61a0c90da56e"
 
 heapster_name="heapster-amd64"
