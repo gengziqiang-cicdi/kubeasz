@@ -109,7 +109,7 @@ spec:
           operator: "Exists"
       containers:
       - name: coredns
-        image: coredns/coredns:1.2.6
+        image: {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ coredns_name }}:{{ coredns_version }}
         imagePullPolicy: IfNotPresent
         resources:
           limits:

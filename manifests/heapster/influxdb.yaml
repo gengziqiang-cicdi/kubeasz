@@ -18,7 +18,7 @@ spec:
       containers:
       - name: influxdb
         #image: gcr.io/google_containers/heapster-influxdb-amd64:v1.3.3
-        image: mirrorgooglecontainers/heapster-influxdb-amd64:v1.3.3
+        image: {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_influxdb_name }}:{{ heapster_influxdb_version }}
         volumeMounts:
         - mountPath: /data
           name: influxdb-storage

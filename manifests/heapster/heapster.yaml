@@ -40,7 +40,7 @@ spec:
       containers:
       - name: heapster
         #image: gcr.io/google_containers/heapster-amd64:v1.5.4
-        image: mirrorgooglecontainers/heapster-amd64:v1.5.4
+        image: {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_name }}:{{ heapster_version }}
         imagePullPolicy: IfNotPresent
         command:
         - /heapster
