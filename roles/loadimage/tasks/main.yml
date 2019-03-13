@@ -58,13 +58,13 @@
 
     - name: LOGIN & PUSH {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}
       shell: "{{ bin_dir }}/docker login {{ HARBOR_IP }} -u {{ HARBOR_USER }} -p '{{ HARBOR_PWD }}' && \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_node_name }}:{{ calico_node_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_cni_name }}:{{ calico_cni_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_kube_controllers_name }}:{{ calico_kube_controllers_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ coredns_name }}:{{ coredns_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ metrics_server_name }}:{{ metrics_server_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_name }}:{{ heapster_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_influxdb_name }}:{{ heapster_influxdb_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_grafana_name }}:{{ heapster_grafana_version }} \
-            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ pause_name }}:{{ pause_version }} \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_node_name }}:{{ calico_node_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_cni_name }}:{{ calico_cni_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ calico_kube_controllers_name }}:{{ calico_kube_controllers_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ coredns_name }}:{{ coredns_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ metrics_server_name }}:{{ metrics_server_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_name }}:{{ heapster_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_influxdb_name }}:{{ heapster_influxdb_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ heapster_grafana_name }}:{{ heapster_grafana_version }} && \
+            {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ pause_name }}:{{ pause_version }} && \
             {{ bin_dir }}/docker push {{ HARBOR_IP }}/{{ KUBEIMAGE_BASE_DIR }}/{{ kubernetes_dashboard_name }}:{{ kubernetes_dashboard_version }}"
