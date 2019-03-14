@@ -1,14 +1,14 @@
 - block:
-    - name: 在deploy 节点创建coredns相关目录
+    - name: 在deploy 节点创建{{ dns_backend }}相关目录
       file: path={{ item }} state=directory
       with_items:
-      - /opt/kube/kube-system/coredns
+      - /opt/kube/kube-system/{{ dns_backend }}
     
     # DNS文件中部分参数根据hosts文件设置而定，因此需要用template模块替换参数
-    - name: 准备 DNS的部署文件
-      template: src={{ item }}.yaml.j2 dest=/opt/kube/kube-system/{{ item }}/{{ item }}.yaml
+    - name: 准备 {{ dns_backend }}的部署文件
+      template: src={{ dns_backend }}/{{ item }}.yaml.j2 dest=/opt/kube/kube-system/{{ item }}/{{ item }}.yaml
       with_items:
-      - coredns
+      - {{ dns_backend }}
     
     - name: 获取所有已经创建的POD信息
       command: "{{ bin_dir }}/kubectl get pod --all-namespaces"
@@ -34,7 +34,7 @@
 
     # metrics-server文件中部分参数根据hosts文件设置而定，因此需要用template模块替换参数
     - name: 准备 metrics-server的部署文件
-      template: src={{ item }}.yaml.j2 dest=/opt/kube/kube-system/metrics-server/{{ item }}.yaml
+      template: src=metrics-server/{{ item }}.yaml.j2 dest=/opt/kube/kube-system/metrics-server/{{ item }}.yaml
       with_items:
       - auth-delegator
       - auth-reader
@@ -57,7 +57,7 @@
 
     # metrics-server文件中部分参数根据hosts文件设置而定，因此需要用template模块替换参数
     - name: 准备 dashboard的部署文件
-      template: src={{ item }}.yaml.j2 dest=/opt/kube/kube-system/dashboard/{{ item }}.yaml
+      template: src=dashboard/{{ item }}.yaml.j2 dest=/opt/kube/kube-system/dashboard/{{ item }}.yaml
       with_items:
       - admin-user-binding
       - admin-user-sa-rbac
@@ -81,7 +81,7 @@
       with_items:
       - /opt/kube/kube-system/heapster
     - name: 准备heapster influxdb grafana的部署文件
-      template: src={{ item }}.yaml.j2 dest=/opt/kube/kube-system/heapster/{{ item }}.yaml
+      template: src=heapster/{{ item }}.yaml.j2 dest=/opt/kube/kube-system/heapster/{{ item }}.yaml
       with_items:
       - heapster
       - grafana
