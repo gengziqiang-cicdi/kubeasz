@@ -72,9 +72,6 @@
   when: '"kubernetes-dashboard" not in pod_info.stdout and dashboard_install == "yes"'
   ignore_errors: true
 
-- import_tasks: ingress.yml
-  when: '"ingress-controller" not in pod_info.stdout and ingress_install == "yes"'
-
 - block:
     - name: 在deploy 节点创建相关目录
       file: path={{ item }} state=directory
