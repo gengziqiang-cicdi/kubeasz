@@ -1,5 +1,5 @@
 - block:
-    - name: 在deploy 节点创建相关目录
+    - name: 在deploy 节点创建coredns相关目录
       file: path={{ item }} state=directory
       with_items:
       - /opt/kube/kube-system/coredns
@@ -27,18 +27,48 @@
   ignore_errors: true
 
 - block:
+    - name: 在deploy 节点创建metrics-server相关目录
+      file: path={{ item }} state=directory
+      with_items:
+      - /opt/kube/kube-system/metrics-server
+
+    # metrics-server文件中部分参数根据hosts文件设置而定，因此需要用template模块替换参数
+    - name: 准备 metrics-server的部署文件
+      template: src={{ item }}.yaml.j2 dest=/opt/kube/kube-system/metrics-server/{{ item }}.yaml
+      with_items:
+      - auth-delegator
+      - auth-reader
+      - metrics-apiservice
+      - metrics-server-deployment
+      - metrics-server-service
+      - resource-reader
     - name: 创建 metrics-server部署
-      shell: "{{ bin_dir }}/kubectl apply -f {{ base_dir }}/manifests/metrics-server"
-      delegate_to: "{{ groups.deploy[0] }}"
-      run_once: true
+      shell: "{{ bin_dir }}/kubectl apply -f /opt/kube/kube-system/metrics-server"
+  run_once: true
+  delegate_to: "{{ groups.deploy[0] }}"
   when: '"metrics-server" not in pod_info.stdout and metricsserver_install == "yes"'
   ignore_errors: true
 
 - block:
+    - name: 在deploy 节点创建metrics-server相关目录
+      file: path={{ item }} state=directory
+      with_items:
+      - /opt/kube/kube-system/dashboard
+
+    # metrics-server文件中部分参数根据hosts文件设置而定，因此需要用template模块替换参数
+    - name: 准备 dashboard的部署文件
+      template: src={{ item }}.yaml.j2 dest=/opt/kube/kube-system/dashboard/{{ item }}.yaml
+      with_items:
+      - admin-user-binding
+      - admin-user-sa-rbac
+      - kubernetes-dashboard
+      - read-user-sa-rbac
+      - ui-admin-rbac
+      - ui-read-rbac
     - name: 创建 dashboard部署
-      shell: "{{ bin_dir }}/kubectl apply -f {{ base_dir }}/manifests/dashboard"
-      delegate_to: "{{ groups.deploy[0] }}"
-      run_once: true
+      shell: "{{ bin_dir }}/kubectl apply -f /opt/kube/kube-system/dashboard"
+  delegate_to: "{{ groups.deploy[0] }}"
+  run_once: true
   when: '"kubernetes-dashboard" not in pod_info.stdout and dashboard_install == "yes"'
   ignore_errors: true
 
@@ -46,37 +76,19 @@
   when: '"ingress-controller" not in pod_info.stdout and ingress_install == "yes"'
 
 - block:
+    - name: 在deploy 节点创建相关目录
+      file: path={{ item }} state=directory
+      with_items:
+      - /opt/kube/kube-system/heapster
     - name: 准备heapster influxdb grafana的部署文件
-      template: src={{ item }}.yaml.j2 dest={{ base_dir }}/manifests/heapster/{{ item }}.yaml
+      template: src={{ item }}.yaml.j2 dest=/opt/kube/kube-system/heapster/{{ item }}.yaml
       with_items:
       - heapster
       - grafana
       - influxdb
     - name: 创建 heapster部署
-      shell: "{{ bin_dir }}/kubectl apply -f {{ base_dir }}/manifests/heapster/heapster.yaml"
-      delegate_to: "{{ groups.deploy[0] }}"
-      run_once: true
+      shell: "{{ bin_dir }}/kubectl apply -f /opt/kube/kube-system/heapster"
+  delegate_to: "{{ groups.deploy[0] }}"
+  run_once: true
   when: '"heapster" not in pod_info.stdout and heapster_install == "yes"'
   ignore_errors: true
-
-- block:
-    - name: 生成 metallb 相关 manifests
-      template: src=metallb/{{ item }}.j2 dest=/opt/kube/kube-system/{{ item }}
-      with_items:
-      - "metallb.yaml"
-      - "{{ metallb_protocol }}.yaml"
-      delegate_to: "{{ groups.deploy[0] }}"
-      run_once: true
-
-    - name: 创建 metallb controller 部署
-      shell: "{{ bin_dir }}/kubectl apply -f /opt/kube/kube-system/metallb.yaml"
-      delegate_to: "{{ groups.deploy[0] }}"
-      run_once: true
-
-    - name: 创建 metallb configmap
-      shell: "{{ bin_dir }}/kubectl apply -f /opt/kube/kube-system/{{ metallb_protocol }}.yaml"
-      delegate_to: "{{ groups.deploy[0] }}"
-      run_once: true
-  when: '"metallb" not in pod_info.stdout and metallb_install == "yes"'
-  ignore_errors: true
-
