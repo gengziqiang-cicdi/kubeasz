@@ -35,6 +35,12 @@
   roles:
   - docker
 
+# to load images
+- hosts:
+  - deploy
+  roles:
+  - loadimage
+
 # to set up 'kube-master' nodes
 - hosts: kube-master
   roles:
