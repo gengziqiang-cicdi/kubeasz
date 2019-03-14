@@ -46,6 +46,12 @@
   when: '"ingress-controller" not in pod_info.stdout and ingress_install == "yes"'
 
 - block:
+    - name: 准备heapster influxdb grafana的部署文件
+      template: src={{ item }}.yaml.j2 dest={{ base_dir }}/manifests/heapster/{{ item }}.yaml
+      with_items:
+      - heapster
+      - grafana
+      - influxdb
     - name: 创建 heapster部署
       shell: "{{ bin_dir }}/kubectl apply -f {{ base_dir }}/manifests/heapster/heapster.yaml"
       delegate_to: "{{ groups.deploy[0] }}"
