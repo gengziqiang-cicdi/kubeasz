@@ -1,8 +1,12 @@
-# to load images
+# to install docker service
 - hosts:
-  - deploy
+  - kube-master
+  - new-master
+  - kube-node
+  - new-node
   roles:
-  - loadimage
+  - docker
+
 # to load images
 - hosts:
   - deploy
