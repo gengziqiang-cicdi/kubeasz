@@ -92,7 +92,7 @@ ca_dir="/etc/kubernetes/ssl"
 #部署目录，即 ansible 工作目录，建议不要修改
 base_dir="/etc/ansible"
 #HARBOR信息
-HARBOR_IP="172.16.12.37"
+HARBOR_IP="172.16.12.236"
 HARBOR_USER="admin"
 HARBOR_PWD="MzxWS!1976;"
 KUBEIMAGE_BASE_DIR=kube-base
