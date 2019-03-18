@@ -1,0 +1,5 @@
+# to load images
+- hosts:
+  - deploy
+  roles:
+  - loadimage
