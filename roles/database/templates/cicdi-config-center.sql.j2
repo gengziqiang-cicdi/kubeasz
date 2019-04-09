@@ -20,16 +20,16 @@ update config.t_config_item set `value`='{{ monitor_redis_port }}' where `applic
 
 
 --paas
-update config.t_config_item set `value`='{{ monitor_db_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
-update config.t_config_item set `value`='{{ monitor_db_password }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
-update config.t_config_item set `value`='{{ monitor_redis_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.redis.hostname';
-update config.t_config_item set `value`='{{ monitor_redis_port }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.redis.port';
-update config.t_config_item set `value`='{{ monitor_deploy_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.deployment';
-update config.t_config_item set `value`='{{ monitor_pods_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.pods';
-update config.t_config_item set `value`='{{ monitor_kubernetes_token }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.token';
-update config.t_config_item set `value`='{{ monitor_jenkins_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='jenkins.url';
-update config.t_config_item set `value`='{{ monitor_jenkins_password }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='jenkins.password';
-update config.t_config_item set `value`='{{ monitor_heapster_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.heapster.url';
+update config.t_config_item set `value`='{{ paas_db_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
+update config.t_config_item set `value`='{{ paas_db_password }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+update config.t_config_item set `value`='{{ paas_redis_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.redis.hostname';
+update config.t_config_item set `value`='{{ paas_redis_port }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.redis.port';
+update config.t_config_item set `value`='{{ paas_deploy_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.deployment';
+update config.t_config_item set `value`='{{ paas_pods_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.pods';
+update config.t_config_item set `value`='{{ paas_kubernetes_token }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.token';
+update config.t_config_item set `value`='{{ paas_jenkins_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='jenkins.url';
+update config.t_config_item set `value`='{{ paas_jenkins_password }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='jenkins.password';
+update config.t_config_item set `value`='{{ paas_heapster_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.heapster.url';
 
 
 --rdp_schema
