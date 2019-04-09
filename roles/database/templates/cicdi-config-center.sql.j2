@@ -1,0 +1,61 @@
+use config
+update config.t_config_item set `value`='{{ config_zookeeper_address }}' where `applicationName`='public' and `group`='system' and `name`='cicdi.zookeeper.address';
+update config.t_config_item set `value`='{{ config_db_password }}' where `applicationName`='public' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+update config.t_config_item set `value`='{{ config_eureka_address }}' where `applicationName`='public' and `group`='system' and `name`='eureka.client.service-url.defaultZone';
+
+--cloud
+update config.t_config_item set `value`='{{ cloud_db_address }}' where `applicationName`='cicdi.cloud' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
+update config.t_config_item set `value`='{{ cloud_db_password }}' where `applicationName`='cicdi.cloud' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+update config.t_config_item set `value`='{{ cloud_mysql_nodes }}' where `applicationName`='cicdi.cloud' and `group`='kubernetes' and `name`='kubernetes.mysql.nodes';
+update config.t_config_item set `value`='{{ cloud_kubernetes_nodes }}' where `applicationName`='cicdi.cloud' and `group`='kubernetes' and `name`='kubernetes.nodes';
+update config.t_config_item set `value`='{{ cloud_nfs_server }}' where `applicationName`='cicdi.cloud' and `group`='kubernetes' and `name`='kubernetes.nfs.server';
+update config.t_config_item set `value`='{{ cloud_harbor_url }}' where `applicationName`='cicdi.cloud' and `group`='kubernetes' and `name`='kubernetes.harbor.url';
+
+
+--monitor
+update config.t_config_item set `value`='{{ monitor_db_address }}' where `applicationName`='cicdi.monitor.center' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
+update config.t_config_item set `value`='{{ monitor_db_password }}' where `applicationName`='cicdi.monitor.center' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+update config.t_config_item set `value`='{{ monitor_redis_url }}' where `applicationName`='cicdi.monitor.center' and `group`='system' and `name`='cicdi.redis.hostname';
+update config.t_config_item set `value`='{{ monitor_redis_port }}' where `applicationName`='cicdi.monitor.center' and `group`='system' and `name`='cicdi.redis.port';
+
+
+--paas
+update config.t_config_item set `value`='{{ monitor_db_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
+update config.t_config_item set `value`='{{ monitor_db_password }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+update config.t_config_item set `value`='{{ monitor_redis_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.redis.hostname';
+update config.t_config_item set `value`='{{ monitor_redis_port }}' where `applicationName`='cicdi.cloud.paas' and `group`='system' and `name`='cicdi.redis.port';
+update config.t_config_item set `value`='{{ monitor_deploy_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.deployment';
+update config.t_config_item set `value`='{{ monitor_pods_address }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.pods';
+update config.t_config_item set `value`='{{ monitor_kubernetes_token }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.api.token';
+update config.t_config_item set `value`='{{ monitor_jenkins_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='jenkins.url';
+update config.t_config_item set `value`='{{ monitor_jenkins_password }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='jenkins.password';
+update config.t_config_item set `value`='{{ monitor_heapster_url }}' where `applicationName`='cicdi.cloud.paas' and `group`='paas' and `name`='kubernetes.heapster.url';
+
+
+--rdp_schema
+update config.t_config_item set `value`='{{ rdp_db_address }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
+update config.t_config_item set `value`='{{ rdp_db_password }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+update config.t_config_item set `value`='{{ rdp_kubernetes_nodes }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='kubernetes' and `name`='kubernetes.nodes';
+update config.t_config_item set `value`='{{ rdp_exec_host }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='pipelineEnv' and `name`='env.ExecHostIP';
+update config.t_config_item set `value`='{{ rdp_harbor_url }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='pipelineEnv' and `name`='env.HarborIP';
+update config.t_config_item set `value`='{{ rdp_harbor_password }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='pipelineEnv' and `name`='env.HarborPwd';
+update config.t_config_item set `value`='{{ rdp_kubernetes_master }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='pipelineEnv' and `name`='env.KubeMasterHostIP';
+update config.t_config_item set `value`='{{ rdp_git_url }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='gitlab' and `name`='gitlab.url';
+update config.t_config_item set `value`='{{ rdp_git_password }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='gitlab' and `name`='gitlab.password';
+update config.t_config_item set `value`='{{ rdp_git_token }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='gitlab' and `name`='gitlab.privateToken';
+update config.t_config_item set `value`='{{ rdp_jenkins_url }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='jenkins' and `name`='jenkins.url';
+update config.t_config_item set `value`='{{ rdp_jenkins_password }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='jenkins' and `name`='jenkins.password';
+update config.t_config_item set `value`='{{ rdp_app_ip }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='application' and `name`='appIp';
+update config.t_config_item set `value`='{{ rdp_dns_ip }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='kubernetes' and `name`='kubernetes.dns.ip';
+
+
+--log_platform_schema
+update config.t_config_item set `value`='{{ log_db_address }}' where `applicationName`='cicdi.cloud.logplatform' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
+update config.t_config_item set `value`='{{ log_db_password }}' where `applicationName`='cicdi.cloud.logplatform' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+
+
+--nodeport
+update config.t_config_item set `value`='{{ nodeport_db_address }}' where `applicationName`='cicdi.nodeport.center' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';
+update config.t_config_item set `value`='{{ nodeport_db_password }}' where `applicationName`='cicdi.nodeport.center' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
+update config.t_config_item set `value`='{{ nodeport_kubernetes_nodes }}' where `applicationName`='cicdi.nodeport.center' and `group`='nodeport' and `name`='kubernetes.nodes';
+commit

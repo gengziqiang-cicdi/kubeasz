@@ -1,0 +1,61 @@
+# 数据库配置
+# config
+config_zookeeper_address: 172.16.12.37:2181,172.16.12.78:2181,172.16.12.79:2181
+config_db_password: 43882e82ef3b824b780d874c574f1c6d
+config_eureka_address: http://eureka-serverpeer1-svc.platform:8761/eureka/,http://eureka-serverpeer2-svc.platform:8761/eureka/,http://eureka-serverpeer3-svc.platform:8761/eureka/
+
+#cloud
+cloud_db_address: jdbc:mysql://172.16.12.37:3306/cloud?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+cloud_db_password: 43882e82ef3b824b780d874c574f1c6d
+cloud_mysql_nodes: 172.16.12.37
+cloud_kubernetes_nodes: 172.16.12.37,172.16.12.78,172.16.12.79
+cloud_nfs_server: 172.16.12.37
+cloud_harbor_url: 172.16.12.236
+
+
+#monitor
+monitor_db_address: jdbc:mysql://172.16.12.37:3306/monitor?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+monitor_db_password: 43882e82ef3b824b780d874c574f1c6d
+monitor_redis_url: 172.16.12.37
+monitor_redis_port: 6379
+
+
+#paas
+paas_db_address: jdbc:mysql://172.16.12.37:3306/paas?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+paas_db_password: 43882e82ef3b824b780d874c574f1c6d
+paas_redis_url: 172.16.12.37
+paas_redis_port: 6379
+paas_deploy_address: https://172.16.12.80:8443/apis/apps/v1/namespaces/
+paas_pods_address: https://172.16.12.80:8443/api/v1/namespaces/
+paas_kubernetes_token: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWdyc21qIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI1NTIxMWZmMS00Yjc1LTExZTktODBjZC0wY2RhNDExZGQ1YTkiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06YWRtaW4tdXNlciJ9.e_q_rpl1uMnaFdZBg-nueXa0EGC5ho2N3ojiulmTTBwG9qHqIQ3HAmomfYfw10gHMfkyvoyiqyFFLUkvEZySN0iLUwg9TPMxCczzmATrvVlhs2cta4-D2VA_LI9QoTIMqay6P4cN7U0kk6IuPcdv80ePuSGdvFYtBYG9cIuIvDyKp3fd_kEXDwr8ghqcB3kCx81VcpmbynnrzshAnKp_aUS0BChlNe-AgSD4l9VxzRTXyA0qafisL5Gni6V5TW0sL-Y5u4Lq98bvTDl6cDUG60UbITFNlLxxZiYytFnq3v_LVtwt9O2KnS7HBa7hMe-zhNVQrsN3uqco0cki5oYbJg
+paas_jenkins_url: http://172.16.12.37:8888/jenkins/
+paas_jenkins_password: jsptpd123
+paas_heapster_url: https://172.16.12.80:8443/api/v1/proxy/namespaces/kube-system/services/heapster/api/v1/model/namespaces/${namespace}/pods/${podName}/metrics/
+
+
+#rdp_schema
+rdp_db_address: jdbc:mysql://172.16.12.37:3306/rdp_schema?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+rdp_db_password: 43882e82ef3b824b780d874c574f1c6d
+rdp_kubernetes_nodes: 172.16.12.37,172.16.12.78,172.16.12.79
+rdp_exec_host: 172.16.12.37
+rdp_harbor_url: 172.16.12.236
+rdp_harbor_password: MzxWS!1976;
+rdp_kubernetes_master: 172.16.12.80
+rdp_git_url: http://172.16.12.37:19999
+rdp_git_password: MzxWS!1976;
+rdp_git_token:
+rdp_jenkins_url: http://172.16.12.37:8888/jenkins/
+rdp_jenkins_password: jsptpd123
+rdp_app_ip: 172.16.12.80
+rdp_dns_ip: 20.19.0.2
+
+
+#log_platform_schema
+log_db_address: jdbc:mysql://172.16.12.37:3306/log_platform-schema?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+log_db_password: 43882e82ef3b824b780d874c574f1c6d
+
+
+#nodeport
+nodeport_db_address: jdbc:mysql://172.16.12.37:3306/nodeport?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+nodeport_db_password: 43882e82ef3b824b780d874c574f1c6d
+nodeport_kubernetes_nodes: 172.16.12.37,172.16.12.78,172.16.12.79

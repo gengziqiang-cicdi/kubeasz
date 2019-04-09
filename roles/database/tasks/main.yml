@@ -1,0 +1,4 @@
+- name: 数据库更新文件
+  copy: src={{ item }}.sql.j2 dest=/cicdi/dbscript/{{ item }}.sql
+  with_items:
+  - cicdi-config-center
