@@ -1,0 +1,5 @@
+# to load sql
+- hosts:
+  - deploy
+  roles:
+  - database
