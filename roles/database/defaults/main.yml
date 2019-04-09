@@ -43,7 +43,7 @@ rdp_harbor_password: MzxWS!1976;
 rdp_kubernetes_master: 172.16.12.80
 rdp_git_url: http://172.16.12.37:19999
 rdp_git_password: MzxWS!1976;
-rdp_git_token:
+rdp_git_token: zGJSCRyT_jyzzdBNkKqt
 rdp_jenkins_url: http://172.16.12.37:8888/jenkins/
 rdp_jenkins_password: jsptpd123
 rdp_app_ip: 172.16.12.80
