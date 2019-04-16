@@ -47,7 +47,10 @@ update config.t_config_item set `value`='{{ rdp_jenkins_url }}' where `applicati
 update config.t_config_item set `value`='{{ rdp_jenkins_password }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='jenkins' and `name`='jenkins.password';
 update config.t_config_item set `value`='{{ rdp_app_ip }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='application' and `name`='appIp';
 update config.t_config_item set `value`='{{ rdp_dns_ip }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='kubernetes' and `name`='kubernetes.dns.ip';
-
+update config.t_config_item set `value`='{{ rdp_base_path }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='pipelineEnv' and `name`='env.BasePath';
+update config.t_config_item set `value`='{{ rdp_eureka_hostname }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='system' and `name`='eureka.instance.hostname';
+update config.t_config_item set `value`='{{ rdp_git_cred_id }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='pipelineEnv' and `name`='env.GitCredID';
+update config.t_config_item set `value`='{{ rdp_cluster_suffix }}' where `applicationName`='cicdi.cloud.rdplatform' and `group`='kubernetes' and `name`='kubernetes.cluster.suffix';
 
 #log_platform_schema
 update config.t_config_item set `value`='{{ log_db_address }}' where `applicationName`='cicdi.cloud.logplatform' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.url';

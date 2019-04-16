@@ -48,7 +48,10 @@ rdp_jenkins_url: http://172.16.12.37:8888/jenkins/
 rdp_jenkins_password: jsptpd123
 rdp_app_ip: 172.16.12.80
 rdp_dns_ip: 20.19.0.2
-
+rdp_base_path: /cicdi/jenkins/pipelinescript
+rdp_eureka_hostname: cicdi-rdpplatform-svc.platform
+rdp_git_cred_id: 8be154f5-c08f-4617-b006-7aa9aa081cc2
+rdp_cluster_suffix:  .svc.testcluster.cicdi
 
 #log_platform_schema
 log_db_address: jdbc:mysql://172.16.12.37:3306/log_platform-schema?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
