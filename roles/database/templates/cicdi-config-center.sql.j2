@@ -62,3 +62,16 @@ update config.t_config_item set `value`='{{ nodeport_db_address }}' where `appli
 update config.t_config_item set `value`='{{ nodeport_db_password }}' where `applicationName`='cicdi.nodeport.center' and `group`='system' and `name`='cicdi.jdbc.datasource-group.primary.readwrite-datasource.password';
 update config.t_config_item set `value`='{{ nodeport_kubernetes_nodes }}' where `applicationName`='cicdi.nodeport.center' and `group`='nodeport' and `name`='kubernetes.nodes';
 commit
+
+#rdp_schema
+use rdp_schema;
+update t_src_template set src=replace(src,'172.16.11.71:31584','172.16.12.37:19999');
+commit
+update t_application
+set gitlab_web_url=replace(gitlab_web_url,'172.16.11.71:31584','172.16.12.37:19999'),http_url_to_repo=replace(http_url_to_repo,'172.16.11.71:31584','172.16.12.37:19999'),ssh_url_to_repo=replace(ssh_url_to_repo,'172.16.11.71:31584','172.16.12.37:19999');
+commit
+update t_pipeline_docker_image_relation set image_tag = '{{ image_tag }}';
+update t_application_associate set k8s_dns_ip='20.19.0.2',associate_url=REPLACE(associate_url,'svc.cluster.local','svc.testcluster.cicdi');
+commit
+update t_application_associate set associate_url=CONCAT('sit-',associate_url);
+commit
