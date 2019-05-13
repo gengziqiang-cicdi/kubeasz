@@ -10,6 +10,7 @@ update config.t_config_item set `value`='{{ cloud_mysql_nodes }}' where `applica
 update config.t_config_item set `value`='{{ cloud_kubernetes_nodes }}' where `applicationName`='cicdi.cloud' and `group`='kubernetes' and `name`='kubernetes.nodes';
 update config.t_config_item set `value`='{{ cloud_nfs_server }}' where `applicationName`='cicdi.cloud' and `group`='kubernetes' and `name`='kubernetes.nfs.server';
 update config.t_config_item set `value`='{{ cloud_harbor_url }}' where `applicationName`='cicdi.cloud' and `group`='kubernetes' and `name`='kubernetes.harbor.url';
+update config.t_config_item set `value`='cicdi-cloud-svc.platform' where `applicationName`='cicdi.cloud' and `group`='system' and `name`='eureka.instance.hostname';
 
 
 #monitor
