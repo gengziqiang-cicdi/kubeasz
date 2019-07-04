@@ -36,8 +36,8 @@ spec:
       volumes:
         - name: repo-nexus-data
           hostPath:
-            path: /data/nexus
-            type: Directory
+            path: /data/nexus/nexus
+            type: DirectoryOrCreate
 ---
 # service
 kind: Service
