@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: repo-nexus
+   labels:
+     name: repo-nexus
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: repo-nexus
+  name: repo-nexus
+  namespace: repo-nexus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: repo-nexus
+  template:
+    metadata:
+      labels:
+        app: repo-nexus
+    spec:
+      containers:
+        - name: repo-nexus
+          image: 192.168.7.6/kube-base/nexus3:3.16.2
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 8081
+            protocol: TCP
+          volumeMounts:
+          - name: repo-nexus-data
+            mountPath: /nexus-data
+      volumes:
+        - name: repo-nexus-data
+          hostpath:
+            path: /data/nexus
+            type: Directory
+---
+# service
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: repo-nexus
+  name: repo-nexus
+  namespace: repo-nexus
+spec:
+  type: NodePort
+  ports:
+    - port: 8081
+      targetPort: 8081
+      nodePort: 22222
+  selector:
+    app: repo-nexus
