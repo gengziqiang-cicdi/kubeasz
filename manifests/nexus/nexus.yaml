@@ -22,7 +22,7 @@ spec:
       labels:
         app: repo-nexus
     spec:
-      nodeName: 192.168.7.6
+      nodeName: 192.168.7.4
       containers:
         - name: repo-nexus
           image: 192.168.7.6/kube-base/nexus3:3.16.2
