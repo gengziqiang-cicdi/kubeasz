@@ -1,58 +1,48 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: apigateway-svc
+  name: cicdi-config-center-web-svc
+  namespace: platform
   labels:
-    app: apigateway-svc
+    app: cicdi-config-center-web-svc
 spec:
   type: NodePort
   sessionAffinity: ClientIP
   ports:
-    - port: 8080
+    - port: 80
       name: business
-      targetPort: 8080
-      nodePort: 30005
-    - port: 5005
-      name: debug
-      targetPort: 5005
-      nodePort: 20005
+      targetPort: 80
+      nodePort: 49999
   selector:
-    app: apigateway-app
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: apigateway-remote-svc
-  labels:
-    app: apigateway-remote-svc
-spec:
-  sessionAffinity: ClientIP
-  ports:
-    - port: 18082
-      name: remote
-      targetPort: 18082
-  selector:
-    app: apigateway-app
+    app: cicdi-config-center-web-app
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: apigateway-dep
+  name: cicdi-config-center-web-dep
+  namespace: platform
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: apigateway-app
+        app: cicdi-config-center-web-app
     spec:
       containers:
-      - name: apigateway-app
-        image: 172.16.12.236/platform/apigateway:20190418100702dailyupdate
+      - name: cicdi-config-center-web-app
+        image: 172.16.12.236/platform/cicdi-config-center-web-image:20190410141734
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           requests:
-            memory: 400Mi
+            memory: 500Mi
           limits:
             memory: 2560Mi
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d/
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: cicdi-config-center-web-configmap

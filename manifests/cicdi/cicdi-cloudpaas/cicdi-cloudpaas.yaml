@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: apigateway-svc
+  name: cicdi-cloudpaas-svc
   labels:
-    app: apigateway-svc
+    app: cicdi-cloudpaas-svc
 spec:
   type: NodePort
   sessionAffinity: ClientIP
@@ -17,14 +17,14 @@ spec:
       targetPort: 5005
       nodePort: 20005
   selector:
-    app: apigateway-app
+    app: cicdi-cloudpaas-app
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: apigateway-remote-svc
+  name: cicdi-cloudpaas-remote-svc
   labels:
-    app: apigateway-remote-svc
+    app: cicdi-cloudpaas-remote-svc
 spec:
   sessionAffinity: ClientIP
   ports:
@@ -32,22 +32,22 @@ spec:
       name: remote
       targetPort: 18082
   selector:
-    app: apigateway-app
+    app: cicdi-cloudpaas-app
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: apigateway-dep
+  name: cicdi-cloudpaas-dep
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: apigateway-app
+        app: cicdi-cloudpaas-app
     spec:
       containers:
-      - name: apigateway-app
-        image: 172.16.12.236/platform/apigateway:20190418100702dailyupdate
+      - name: cicdi-cloudpaas-app
+        image: 172.16.12.236/platform/cicdi-cloudpaas:20190418100702dailyupdate
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
