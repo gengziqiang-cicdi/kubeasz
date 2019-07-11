@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-serverpeer1-svc
+  labels:
+    app: eureka-serverpeer1-svc
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+    - port: 8761
+      targetPort: 8761
+      nodePort: 20101
+  selector:
+    app: eureka-serverpeer1-app
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: eureka-serverpeer1-dep
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eureka-serverpeer1-app
+    spec:
+      containers:
+      - name: eureka-serverpeer1-app
+        image: 172.16.12.236/platform/eureka-serverpeer1:20190328164830create
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8761
+        resources:
+          requests:
+            cpu: 100m
+            memory: 400Mi
+          limits:
+            cpu: 500m
+            memory: 2560Mi

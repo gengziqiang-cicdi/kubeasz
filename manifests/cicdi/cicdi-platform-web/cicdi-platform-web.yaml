@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicdi-platform-web-svc
+  namespace: platform
+  labels:
+    app: cicdi-platform-web-svc
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+    - port: 80
+      name: business
+      targetPort: 80
+      nodePort: 48106
+  selector:
+    app: cicdi-platform-web-app
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: cicdi-platform-web-dep
+  namespace: platform
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cicdi-platform-web-app
+    spec:
+      containers:
+      - name: cicdi-platform-web-app
+        image: 172.16.12.236/platform/cicdi-platform-web-image:20190617173741
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: 500Mi
+          limits:
+            memory: 2560Mi
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d/
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: cicdi-platform-web-configmap

@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicdi-rdpplatform-svc
+  labels:
+    app: cicdi-rdpplatform-svc
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+    - port: 8080
+      name: business
+      targetPort: 8080
+      nodePort: 48102
+    - port: 5005
+      name: debug
+      targetPort: 5005
+      nodePort: 38102
+  selector:
+    app: cicdi-rdpplatform-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicdi-rdpplatform-remote-svc
+  labels:
+    app: cicdi-rdpplatform-remote-svc
+spec:
+  sessionAffinity: ClientIP
+  ports:
+    - port: 18082
+      name: remote
+      targetPort: 18082
+  selector:
+    app: cicdi-rdpplatform-app
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: cicdi-rdpplatform-sts
+spec:
+  serviceName: cicdi-rdpplatform-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cicdi-rdpplatform-app
+    spec:
+      containers:
+      - name: cicdi-rdpplatform-app
+        image: 172.16.12.236/platform/cicdi-rdpplatform:20190510160212dailyupdate
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 400Mi
+          limits:
+            memory: 2560Mi
+        volumeMounts:
+        - name: cicdi-rdpplatform-pvc
+          mountPath: /data
+        - name: app-logs
+          mountPath: /application_log
+  volumeClaimTemplates:
+  - metadata:
+      name: cicdi-rdpplatform-pvc
+    spec:
+      accessModes: [ "ReadWriteMany" ]
+      storageClassName: "cicdi-nfs-dynamic-class"
+      resources:
+        requests:
+          storage: 4Gi
