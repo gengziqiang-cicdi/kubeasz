@@ -5,7 +5,7 @@ ADD eureka-1.0.jar /eureka-1.0.jar
 #expose port
 EXPOSE 8761
 ENV LANG zh_CN.GBK
-ENV JAVA_OPTS "-Dfile.encoding=GBK -Xms256m -Xmx256m "
+ENV JAVA_OPTS "-Dfile.encoding=GBK -Xms512m -Xmx512m "
 ENV SPRING_OPTS --eureka.client.serviceUrl.defaultZone=http://eureka-serverpeer2-svc.platform:8761/eureka/,http://eureka-serverpeer3-svc.platform:8761/eureka/ --eureka.
 instance.hostname=eureka-serverpeer1-svc.platform
 ENV TZ=Asia/Shanghai
