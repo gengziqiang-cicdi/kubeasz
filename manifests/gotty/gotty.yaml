@@ -1,0 +1,41 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: gotty-dep
+  namespace: platform
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gotty-app
+    spec:
+      containers:
+      - name: gotty-app
+        image: 172.16.12.203/base/centos7-gotty72:201809
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: 500Mi
+          limits:
+            memory: 2560Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gotty-svc
+  namespace: platform
+  labels:
+    app: gotty-svc
+spec:
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+    - port: 8080
+      name: business
+      targetPort: 8080
+      nodePort: 33333
+  selector:
+    app: gotty-app
